@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+            function toText() {
+                var paramValue = window.location.href.split("?")[1].split("=")[1];
+                document.getElementById('text').value=decodeURI(paramValue);
+            }
+    </script>
+    <meta charset="UTF-8">
+    <title>Сохранить</title>
+    <link href="saveC.css" rel="stylesheet">
+
+</head>
+<body onload="toText()">
+<input type="text" id="text">
+<input type="submit" value="Сохранить" id="btn">
+</body>
+</html>

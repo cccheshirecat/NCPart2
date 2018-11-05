@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="employees.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Поиск информации о сотрудниках</title>
+    <script>
+        //var btn=document.getElementById("btnName");
+        function send(){
+            var name=document.getElementById("nameEmp").value;
+            document.location=("saveH.html?name="+encodeURI(name));
+        }
+        function initHandlers() {
+            nameEmp.onfocus=function(){
+                document.getElementById('nameEmp').placeholder="";
+            }
+            nameEmp.onblur=function () {
+                document.getElementById('nameEmp').placeholder="Например, Иван";
+            }
+            numberBut.onclick=function () {
+                var number=document.getElementById('numberEmp').value;
+                if(isNaN(number)){
+                    alert('Не является числом');
+                }/*else {alert("число");}*/
+            }
+        }
+    </script>
+</head>
+<body onload="initHandlers()">
+    <h1>Получение информации о сотрудниках</h1>
+    <form>
+        <p>Введите номер сотрудника</p>
+        <input id="numberEmp" placeholder="Номер сотрудника" size="30" class="input"/>
+        <input id="numberBut" type="submit" class="inputBut" value="Найти по номеру"/>
+        <p>Введите имя сотрудника</p>
+
+        <input id="nameEmp" placeholder="Например, Иван" size="30" class="input" name="nameEmp" >
+        <input type="button" class="inputBut"value="Найти по имени"  id="btnName" onclick="send()"/>
+
+        <!--input type submit br-margin-->
+
+    <button class="inputBut">Все сотрудники</button>
+    </form>
+    <a href="" id="add">Добавить нового сотрудника</a>
+    <form id="modal">
+        <p id="deleteP">Вы действительно хотите удалить?</p>
+        <input id="deleteBtn" class="btnModal" type="submit" value="Удалить" />
+        <input class="btnModal" type="submit" value="Отмена" onclick="modalClose()"/>
+    </form>
+    <script type="text/javascript">
+        var modal=document.getElementById("modal");
+        function modalOpen(row) {
+            modal.style.display="block";
+            var btn=document.getElementById("deleteBtn");
+            btn.onclick=function () {
+                var elm=row.parentNode.parentNode;
+                elm.parentElement.removeChild(elm);
+                modalClose();
+            }
+        }
+        function modalClose() {
+            modal.style.display="none";
+        }
+    </script>
+    <table id="table">
+        <tr>
+            <th></th>
+            <th>Номер сотрудника</th>
+            <th>Имя сотрудника</th>
+            <th>Должность</th>
+            <th>Дата принятия на работу</th>
+            <th>Департамент</th>
+            <th>Удалить</th>
+        </tr>
+        <tr id="1">
+            <td><input type="checkbox"></td>
+            <td>101400</td>
+            <td>Владислав</td>
+            <td>Глав. бух.</td>
+            <td>01.04.2000</td>
+            <td>Бухгалтерия</td>
+            <td><a class="deleteE" onclick="modalOpen(this)" href="#modal">Удалить</a></td>
+        </tr>
+        <tr id="2">
+            <td><input type="checkbox"></td>
+            <td>101401</td>
+            <td>Надежда</td>
+            <td>Бухгалтер</td>
+            <td>15.05.2001</td>
+            <td>Бухгалтерия</td>
+            <td><a class="deleteE" onclick="modalOpen(this)" href="#modal">Удалить</a></td>
+        </tr>
+        <tr id="3">
+            <td><input type="checkbox"></td>
+            <td>101402</td>
+            <td>Ксения</td>
+            <td>Менеджер</td>
+            <td>10.09.1999</td>
+            <td>Менедмент</td>
+            <td><a class="deleteE" onclick="modalOpen(this)" href="#modal">Удалить</a></td>
+        </tr>
+        <tr id="4">
+            <td><input type="checkbox"></td>
+            <td>101403</td>
+            <td>Валерий</td>
+            <td>Менеджен</td>
+            <td>15.12.2004</td>
+            <td>Менеджмент</td>
+            <td><a class="deleteE" onclick="modalOpen(this)" href="#modal">Удалить</a></td>
+        </tr>
+        <tr id="5">
+            <td><input type="checkbox"></td>
+            <td>101404</td>
+            <td>Валерия</td>
+            <td>Администратор</td>
+            <td>22.04.2003</td>
+            <td>Администрация</td>
+            <td><a class="deleteE" onclick="modalOpen(this)" href="#modal">Удалить</a></td>
+        </tr>
+        <tr id="6">
+            <td><input type="checkbox"></td>
+            <td>101405</td>
+            <td>Вячеслав</td>
+            <td>Сис. админ.</td>
+            <td>01.04.2000</td>
+            <td>ИТ отдел</td>
+            <td><a class="deleteE" onclick="modalOpen(this)" href="#modal">Удалить</a></td>
+        </tr>
+        <tr id="7">
+            <td><input type="checkbox"></td>
+            <td>101406</td>
+            <td>Мария</td>
+            <td>Оператор</td>
+            <td>01.04.2010</td>
+            <td>Горячая линия</td>
+            <td><a class="deleteE" onclick="modalOpen(this)" href="#modal">Удалить</a></td>
+        </tr>
+        <tr id="8">
+            <td><input type="checkbox"></td>
+            <td>101407</td>
+            <td>Иван</td>
+            <td>Оператор</td>
+            <td>07.11.2011</td>
+            <td>Горячая линия</td>
+            <td><a class="deleteE" onclick="modalOpen(this)" href="#modal">Удалить</a></td>
+        </tr>
+        <tr id="9">
+            <td><input type="checkbox"></td>
+            <td>101408</td>
+            <td>Артем</td>
+            <td>Консультант</td>
+            <td>17.08.2017</td>
+            <td>Подбор персонала</td>
+            <td><a class="deleteE" onclick="modalOpen(this)" href="#modal">Удалить</a></td>
+        </tr>
+        <tr id="10">
+            <td><input type="checkbox"></td>
+            <td>101409</td>
+            <td>Светлана</td>
+            <td>Старший консультант</td>
+            <td>04.04.2004</td>
+            <td>Подбор персонала</td>
+            <td><a class="deleteE" onclick="modalOpen(this)" href="#modal">Удалить</a></td>
+        </tr>
+    </table>
+</body>
+</html>
